@@ -3,6 +3,8 @@ package nest.community.sijin;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * 计算右右的准确年龄，精确到分，包括满多少天第多少天
@@ -12,7 +14,12 @@ import java.time.format.DateTimeFormatter;
 public class Age {
 
     public static void main(String[] args) {
-        LocalDateTime birthday = LocalDateTime.of(2019, 12, 10, 14, 18, 0);
+        if (Objects.isNull(args) || args.length != 6) {
+            System.out.println("输入数据有误");
+            return;
+        }
+        int[] birth = Arrays.stream(args).mapToInt(Integer::parseInt).toArray();
+        LocalDateTime birthday = LocalDateTime.of(birth[0], birth[1], birth[2], birth[3], birth[4], birth[5]);
         LocalDateTime current = LocalDateTime.now();
         int hours = current.getHour() - birthday.getHour();
         int minutes = current.getMinute() - birthday.getMinute();
@@ -35,8 +42,7 @@ public class Age {
             year -= 1;
             month += 12;
         }
-        StringBuilder builder = new StringBuilder();
-        builder.append("我");
+        StringBuilder builder = new StringBuilder("我");
         if (year > 0) {
             builder.append(String.format("%s岁", year));
         }
