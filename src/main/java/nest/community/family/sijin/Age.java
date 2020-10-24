@@ -1,4 +1,4 @@
-package nest.community.sijin;
+package nest.community.family.sijin;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
